@@ -73,6 +73,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         timeline.date = NSDate()
         
         if let image = imageView.image {
+            let image = UIImage(CGImage: image.CGImage!, scale: image.scale, orientation:.LeftMirrored)
             timeline.image = UIImageJPEGRepresentation(image, 0.75)
         }
         
@@ -97,9 +98,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
+        
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             imagePicker.sourceType = .Camera
             UIImagePickerControllerSourceType.Camera
+            imagePicker.cameraDevice = UIImagePickerControllerCameraDevice.Front
             saveEntry()
         } else {
             imagePicker.sourceType = .PhotoLibrary
