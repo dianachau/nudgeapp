@@ -104,11 +104,8 @@ class OurStoryTableViewController: UITableViewController, NSFetchedResultsContro
         cell.storyLocationLabel.text = timeline.location
         
         
-        if timeline.date != nil {
-           cell.storyDateLabel.text = NSDateFormatter.localizedStringFromDate(
-                NSDate(),
-                dateStyle: NSDateFormatterStyle.LongStyle,
-                timeStyle: NSDateFormatterStyle.ShortStyle);
+        if let date = timeline.date {
+            cell.storyDateLabel.text = convertNSDateToString(date)
         }
         
         if let image = timeline.image {
@@ -116,6 +113,13 @@ class OurStoryTableViewController: UITableViewController, NSFetchedResultsContro
         }
     }
     
+    func convertNSDateToString (date: NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .LongStyle
+        dateFormatter.timeStyle = .ShortStyle
+        let dateAsString = dateFormatter.stringFromDate(date)
+        return dateAsString
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ourStoryTableViewCells", forIndexPath: indexPath) as! OurStoryTableViewCell
