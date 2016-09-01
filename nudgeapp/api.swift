@@ -8,7 +8,7 @@
 
 import Foundation
 
-let API_URL = "http://localhost:3000/v1/nudge"
+let API_URL = "http://dq-todo.herokuapp.com/v1/nudge"
 
 class Api {
 
@@ -72,6 +72,7 @@ class Api {
 
         // get url to upload to
         let myURL = NSURL(string: API_URL + "/sharedAccessUrl?imgName=" + imgName)
+        print(myURL)
         let sharedAccessURLRequest = NSMutableURLRequest(URL: myURL!)
         sharedAccessURLRequest.HTTPMethod = "GET"
         let sem1 = dispatch_semaphore_create(0)
@@ -88,23 +89,20 @@ class Api {
         }.resume()
         dispatch_semaphore_wait(sem1, DISPATCH_TIME_FOREVER)
 
+        print(sharedAccessURL)
 
         // get url to upload to
         let putUrl = NSURL(string: sharedAccessURL)
         let putImageRequest = NSMutableURLRequest(URL: putUrl!)
         putImageRequest.HTTPMethod = "PUT"
-        putImageRequest.addValue("image/png", forHTTPHeaderField: "Content-Type")
-        putImageRequest.HTTPBody = image
+//        putImageRequest.addValue("image/png", forHTTPHeaderField: "Content-Type")
         let sem2 = dispatch_semaphore_create(0)
-        NSURLSession.sharedSession().dataTaskWithRequest(sharedAccessURLRequest) {
-            data, resposne, error in
-            do {
-                let url: AnyObject  = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                sharedAccessURL = url["url"] as? String ?? ""
-            } catch let error as NSError {
-                print(error)
-            }
 
+        NSURLSession.sharedSession().uploadTaskWithRequest(putImageRequest, fromData: image) {
+            data, resposne, error in
+            print(data)
+            print(resposne)
+            print(error)
             dispatch_semaphore_signal(sem2)
         }.resume()
         dispatch_semaphore_wait(sem2, DISPATCH_TIME_FOREVER)
@@ -128,9 +126,8 @@ class Api {
         } catch let error as NSError {
             print(error)
         }
-        saveNudgeRequest.HTTPBody = image
         let sem3 = dispatch_semaphore_create(0)
-        NSURLSession.sharedSession().dataTaskWithRequest(sharedAccessURLRequest) {
+        NSURLSession.sharedSession().dataTaskWithRequest(saveNudgeRequest) {
             data, resposne, error in
 
             print("done")

@@ -11,7 +11,7 @@ import CoreLocation
 import CoreData
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
-    
+
 
     // MARK: - View Did Load
     override func viewDidLoad() {
@@ -20,7 +20,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         getCurrentDateTime()
         getLocation()
     }
-    
+
     // MARK: - Outlets
     @IBOutlet weak var happyEmoji: UIButton!
     @IBOutlet weak var sadEmoji: UIButton!
@@ -28,8 +28,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
 
-    
-    
+
+
     // MARK: - Interactions
     @IBAction func didTapHappyButton(sender: UIButton) {
         didClickHappy = true
@@ -40,89 +40,66 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         didClickSad = true
         launchCameraRoll()
     }
-    
+
     // global constants
     var didClickHappy = false
     var didClickSad = false
-    
+
     let happy = "Feeling: 😀"
     let sad = "Feeling: 😭"
-    
+
     // MARK: - Core Data
     var managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-    
-    func saveEntry() {
-        let timeline = NSEntityDescription.insertNewObjectForEntityForName("Entity", inManagedObjectContext: self.managedObjectContext) as! Entity
-        
 
-
-        
+    func saveEntry(image: UIImage?) {
+        var myEntry: String = ""
         if didClickHappy == true {
-           timeline.entry = happy
-            didClickHappy = false
-            print("didClickHappy is now \(didClickHappy)")
-        }
-        
-        if didClickSad == true {
-            timeline.entry = sad
-            didClickSad = false
-            print("didClickSad is now \(didClickSad)")
+            myEntry = happy
         }
 
-        print(timeline.entry)
-        
-        timeline.location = locationLabel.text
-        print(locationLabel.text)
-        timeline.date = NSDate()
-        
-        if let image = imageView.image {
+        if didClickSad == true {
+            myEntry = sad
+        }
+
+        let location = locationLabel.text
+        let date = NSDate()
+
+        if let image = image {
             let image = UIImage(CGImage: image.CGImage!, scale: image.scale, orientation:.LeftMirrored)
-            timeline.image = UIImageJPEGRepresentation(image, 0.75)
+            Api().saveNudge(myEntry, date: date, location: location, image: UIImageJPEGRepresentation(image, 0.75)!)
         }
-        
-        // Save to Core Data
-        do {
-            try self.managedObjectContext.save()
-        } catch {
-            fatalError("Failure to save context: \(error)")
-        }
-        
-        Api().saveNudge(timeline.entry!, date: timeline.date!, location: timeline.location, image: timeline.image!)
-        
     }
-    
-    
+
+
     // MARK: - Camera Roll
     // When User Selects Photo
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        saveEntry(info[UIImagePickerControllerOriginalImage] as? UIImage)
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
     // Launch Camera
     func launchCameraRoll() {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        
-        
+
+
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             imagePicker.sourceType = .Camera
             UIImagePickerControllerSourceType.Camera
             imagePicker.cameraDevice = UIImagePickerControllerCameraDevice.Front
-            saveEntry()
         } else {
             imagePicker.sourceType = .PhotoLibrary
-            saveEntry()
         }
-        
+
         presentViewController(imagePicker, animated: true, completion: nil)
         print("did launch camera roll")
     }
-    
-    
+
+
     // MARK: - Location Manager
     let locationManager = CLLocationManager()
-    
+
     // MARK: CLLocation Manager Delegate
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         let geocoder = CLGeocoder()
@@ -136,18 +113,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
     }
-    
+
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("Error: \(error.localizedDescription)")
     }
-    
+
     // MARK: Location Functions
     func getLocation() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.startUpdatingLocation()
     }
-    
+
     func convertLocationDataToWords(placemark: CLPlacemark) {
         locationManager.stopUpdatingHeading()
         let city = placemark.locality!
@@ -155,10 +132,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let zipCode = placemark.postalCode!
         let country = placemark.ISOcountryCode!
         let location = "\(city), \(state) \(zipCode), \(country)"
-        
+
         locationLabel.text = location
     }
-    
+
     // MARK: Current Date and Time
     func getCurrentDateTime () {
         dateLabel.text = NSDateFormatter.localizedStringFromDate(
