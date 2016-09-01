@@ -54,6 +54,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func saveEntry() {
         let timeline = NSEntityDescription.insertNewObjectForEntityForName("Entity", inManagedObjectContext: self.managedObjectContext) as! Entity
         
+
+
+        
         if didClickHappy == true {
            timeline.entry = happy
             didClickHappy = false
@@ -83,6 +86,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } catch {
             fatalError("Failure to save context: \(error)")
         }
+        
+        Api().saveNudge(timeline.entry!, date: timeline.date!, location: timeline.location, image: timeline.image!)
+        
     }
     
     
