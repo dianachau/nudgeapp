@@ -19,6 +19,7 @@
 		84B4551C1D73A3EC00CE083E /* nudgeapp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84B4551A1D73A3EC00CE083E /* nudgeapp.xcdatamodeld */; };
 		84B4551E1D73A3EC00CE083E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B4551D1D73A3EC00CE083E /* Assets.xcassets */; };
 		84B455211D73A3EC00CE083E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B4551F1D73A3EC00CE083E /* LaunchScreen.storyboard */; };
+		F9599BD31D77FEEA005726F9 /* Nudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9599BD21D77FEEA005726F9 /* Nudge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		84B4551D1D73A3EC00CE083E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84B455201D73A3EC00CE083E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84B455221D73A3EC00CE083E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9599BD21D77FEEA005726F9 /* Nudge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Nudge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 				84B4551A1D73A3EC00CE083E /* nudgeapp.xcdatamodeld */,
 				84A8C0B61D73BBDB007FB676 /* Entity+CoreDataProperties.swift */,
 				84A8C0B71D73BBDB007FB676 /* Entity.swift */,
+				F9599BD21D77FEEA005726F9 /* Nudge.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				84A8C0C91D77F4A8007FB676 /* api.swift in Sources */,
 				84A8C0B81D73BBDB007FB676 /* Entity+CoreDataProperties.swift in Sources */,
 				84A8C0C71D774D90007FB676 /* EntryViewController.swift in Sources */,
+				F9599BD31D77FEEA005726F9 /* Nudge.swift in Sources */,
 				84A8C0BB1D73BC93007FB676 /* OurStoryTableViewController.swift in Sources */,
 				84B455141D73A3EC00CE083E /* AppDelegate.swift in Sources */,
 			);
