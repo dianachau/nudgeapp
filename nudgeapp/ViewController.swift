@@ -75,7 +75,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let image = imageView.image {
             timeline.image = UIImageJPEGRepresentation(image, 0.75)
         }
-            
         
         // Save to Core Data
         do {

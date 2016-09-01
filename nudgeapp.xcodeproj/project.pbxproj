@@ -12,6 +12,7 @@
 		84A8C0BB1D73BC93007FB676 /* OurStoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8C0BA1D73BC93007FB676 /* OurStoryTableViewController.swift */; };
 		84A8C0BD1D73BD97007FB676 /* OurStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8C0BC1D73BD97007FB676 /* OurStoryTableViewCell.swift */; };
 		84A8C0C71D774D90007FB676 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8C0C61D774D90007FB676 /* EntryViewController.swift */; };
+		84A8C0C91D77F4A8007FB676 /* api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A8C0C81D77F4A8007FB676 /* api.swift */; };
 		84B455141D73A3EC00CE083E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B455131D73A3EC00CE083E /* AppDelegate.swift */; };
 		84B455161D73A3EC00CE083E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B455151D73A3EC00CE083E /* ViewController.swift */; };
 		84B455191D73A3EC00CE083E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B455171D73A3EC00CE083E /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		84A8C0BA1D73BC93007FB676 /* OurStoryTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurStoryTableViewController.swift; sourceTree = "<group>"; };
 		84A8C0BC1D73BD97007FB676 /* OurStoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OurStoryTableViewCell.swift; sourceTree = "<group>"; };
 		84A8C0C61D774D90007FB676 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		84A8C0C81D77F4A8007FB676 /* api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = api.swift; sourceTree = "<group>"; };
 		84B455101D73A3EC00CE083E /* nudgeapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nudgeapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B455131D73A3EC00CE083E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84B455151D73A3EC00CE083E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				84B4551F1D73A3EC00CE083E /* LaunchScreen.storyboard */,
 				84B455221D73A3EC00CE083E /* Info.plist */,
 				84A8C0B51D73A6E2007FB676 /* Model */,
+				84A8C0C81D77F4A8007FB676 /* api.swift */,
 			);
 			path = nudgeapp;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				84A8C0B91D73BBDB007FB676 /* Entity.swift in Sources */,
 				84A8C0BD1D73BD97007FB676 /* OurStoryTableViewCell.swift in Sources */,
 				84B455161D73A3EC00CE083E /* ViewController.swift in Sources */,
+				84A8C0C91D77F4A8007FB676 /* api.swift in Sources */,
 				84A8C0B81D73BBDB007FB676 /* Entity+CoreDataProperties.swift in Sources */,
 				84A8C0C71D774D90007FB676 /* EntryViewController.swift in Sources */,
 				84A8C0BB1D73BC93007FB676 /* OurStoryTableViewController.swift in Sources */,
